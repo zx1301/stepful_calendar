@@ -14,14 +14,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_03_185858) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "calls_tables", force: :cascade do |t|
+  create_table "calls", force: :cascade do |t|
     t.datetime "start_time"
     t.bigint "coach_id"
     t.bigint "student_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["coach_id"], name: "index_calls_tables_on_coach_id"
-    t.index ["student_id"], name: "index_calls_tables_on_student_id"
+    t.index ["coach_id"], name: "index_calls_on_coach_id"
+    t.index ["student_id"], name: "index_calls_on_student_id"
   end
 
   create_table "user_relationships", force: :cascade do |t|
@@ -48,8 +48,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_06_03_185858) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "calls_tables", "users", column: "coach_id"
-  add_foreign_key "calls_tables", "users", column: "student_id"
+  add_foreign_key "calls", "users", column: "coach_id"
+  add_foreign_key "calls", "users", column: "student_id"
   add_foreign_key "user_relationships", "users"
   add_foreign_key "user_relationships", "users", column: "member_id"
 end
