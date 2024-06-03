@@ -10,6 +10,8 @@ class User < ApplicationRecord
                           foreign_key: :user_id,
                           association_foreign_key: :member_id
 
+  has_many :calls
+
   roles_map = {
     "admin": 0,
     "coach": 1,
